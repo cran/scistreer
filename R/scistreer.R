@@ -22,6 +22,9 @@ NULL
 #' @export
 run_scistree = function(P, init = 'UPGMA', ncores = 1, max_iter = 100, eps = 0.01, verbose = TRUE) {
 
+    RhpcBLASctl::blas_set_num_threads(1)
+    RhpcBLASctl::omp_set_num_threads(1)
+
     if (!is.matrix(P)) {
         stop('P needs to be a matrix')
     }
@@ -69,8 +72,13 @@ run_scistree = function(P, init = 'UPGMA', ncores = 1, max_iter = 100, eps = 0.0
 #' @param verbose logical Verbosity
 #' @param ncores integer Number of cores to use
 #' @return multiPhylo List of trees corresponding to the rearrangement steps
-#' @keywords internal
+#' @examples
+#' tree_list = perform_nni(tree_upgma, P_small)
+#' @export 
 perform_nni = function(tree_init, P, max_iter = 100, eps = 0.01, ncores = 1, verbose = TRUE) {
+
+    RhpcBLASctl::blas_set_num_threads(1)
+    RhpcBLASctl::omp_set_num_threads(1)
         
     converge = FALSE
     
@@ -114,12 +122,14 @@ perform_nni = function(tree_init, P, max_iter = 100, eps = 0.01, ncores = 1, ver
     return(tree_list)
 }
 
-#' score a tree based on maximum likelihood
+#' Score a tree based on maximum likelihood
 #' @param tree phylo object
 #' @param P genotype probability matrix
 #' @param get_l_matrix whether to compute the whole likelihood matrix
 #' @return list Likelihood scores of a tree
-#' @keywords internal
+#' @examples
+#' tree_likelihood = score_tree(tree_upgma, P_small)$l_tree
+#' @export
 score_tree = function(tree, P, get_l_matrix = FALSE) {
  
     tree = reorder(tree, order = 'postorder')
@@ -222,7 +232,9 @@ annotate_tree = function(tree, P) {
 #' @param gtree tbl_graph The single-cell phylogeny
 #' @param mut_nodes dataframe Mutation placements
 #' @return tbl_graph A single-cell phylogeny with mutation placements
-#' @keywords internal
+#' @examples
+#' gtree_small = mut_to_tree(gtree_small, mut_nodes_small)
+#' @export
 mut_to_tree = function(gtree, mut_nodes) {
    
     # transfer mutation to tree
@@ -290,11 +302,13 @@ mut_to_tree = function(gtree, mut_nodes) {
 #' @param gtree tbl_graph The single-cell phylogeny
 #' @return igraph Mutation graph
 #' @examples
-#' mut_graph = get_mut_graph(annotate_tree(tree_small, P_small))
+#' mut_graph = get_mut_graph(gtree_small)
 #' @export
 get_mut_graph = function(gtree) {
 
-    mut_nodes = as.data.frame(gtree) %>%
+    mut_nodes = gtree %>% 
+        activate(nodes) %>%
+        as.data.frame() %>%
         filter(!is.na(site)) %>%
         distinct(name, site)
 
