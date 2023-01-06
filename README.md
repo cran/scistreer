@@ -8,19 +8,27 @@
 Fast maximum-likelihood phylogeny inference from noisy single-cell data using the 'ScisTree' algorithm [(Wu, Bioinformatics 2019)](https://academic.oup.com/bioinformatics/article/36/3/742/5555811). 'scistreer' provides an 'R' interface and improves speed via 'Rcpp' and 'RcppParallel', making the method applicable to massive single-cell datasets (>10,000 cells).
 
 # Installation
+To install the stable CRAN version, 
+```R
+install.packages('scistreer', dependencies = TRUE)
+```
+To get the most recent updates, you can install the github version via `devtools`:
 ```R
 devtools::install_github('https://github.com/kharchenkolab/scistreer')
 ```
 # Usage
 Within R, you only need to supply a genotype probability matrix (cell x mutation), where each entry is the probability that the cell harbors the mutation. For example,
 
+
 ```R
-treeML = run_scistree(P_example, ncores = 8, init = 'UPGMA', verbose = F)
+treeML = run_scistree(P_example, ncores = 8, init = 'UPGMA', verbose = FALSE)
 ```
-The output maximum likelihood tree is a `ape::phylo` object. You can visualize the output and the probablity matrix as follows:
+The output maximum likelihood tree is an `ape::phylo` object. You can visualize the output and the probability matrix as follows:
 ```R
 plot_phylo_heatmap(treeML, P_example)
 ``` 
+
+
 
 <p align="center">
 <img src="https://user-images.githubusercontent.com/13375875/202533038-3513f6ba-454f-4bd2-9808-70e3442808cd.png" width="600">
