@@ -1,6 +1,6 @@
-e9ca0439adf5ce21421404d58e7acc0a *DESCRIPTION
+416646c92c586e3a1f22393775cda241 *DESCRIPTION
 e6022153cd08ea72875a38f70c40e2f9 *NAMESPACE
-f77d4093e4e502520bfc1791d7f5a3f2 *R/RcppExports.R
+915b192a39ceeb1806ea9ae899b069b9 *R/RcppExports.R
 b228586fb83ac547f9ee45b5be50419b *R/data.R
 1d325e9d2f18464097756b871f5835f1 *R/scistreer.R
 fc1d1dbcefaa8392e0a79ba2182ae62e *R/vars.R
@@ -30,9 +30,9 @@ da4d8e6cf9a3426a789b2ee6105dd117 *man/perform_nni.Rd
 f6bf9550ac55c332c33bbe92e4ec8c86 *man/transfer_links.Rd
 2d226ab24f3a1a6561666c5df3c076f1 *man/tree_small.Rd
 e76aba6487a1742abf48f50309fd883a *man/tree_upgma.Rd
-7953ab2a78bcb0c8036f50e9dd3d1026 *src/Makevars
-ccee6f6dc8c0f1c1b87f60ca95ef25ec *src/Makevars.win
-6a441eecebf779b169d74f97328da533 *src/RcppExports.cpp
-831d69a168971e54b7e3eba1327463a4 *src/scistreer.cpp
+d84ce45f027263dc4159f550cd5fb5b6 *src/Makevars
+a23ffe8c6afc95b0dacc3f89b42eef4b *src/Makevars.win
+81b5ad73378808d1eb7b59446b1dfcdc *src/RcppExports.cpp
+2629555673979e4f11eaa60f8446febb *src/scistreer.cpp
 482ecd6cd87488717be61932257a78c4 *tests/testthat.R
-9da4e43d7d3c43266ac6f1204ce8bf55 *tests/testthat/test_functions.R
+a68ed758a396d701153a8c55fd7ec648 *tests/testthat/test_functions.R
